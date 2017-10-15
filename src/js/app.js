@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 
+
+/**
+ *  Redux チュートリアルサンプル
+ */
+
 /* Actionの実装 */
 
 // Action名の定義
@@ -49,6 +54,9 @@ store.subscribe(() => {
 });
 
 
+/**
+ *  Redux と React の連携
+ */
 // Container Components の実装
 class FormApp extends React.Component {
   render() {
@@ -97,3 +105,29 @@ class FormDisplay extends React.component {
 FormDisplay.propTypes = {
   data: React.PropTypes.string,
 }
+
+// Rendering
+ReactDOM.render(
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
+  document.querySelector('.content')
+);
+
+// Connect to redux
+function mapStateToProps(state){
+  return {
+    value: state.value,
+  };
+}
+function mapDispatchToProps(dispatch){
+  return {
+    onClick(value) {
+      dispatch(send(value));
+    },
+  };
+}
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormApp);
