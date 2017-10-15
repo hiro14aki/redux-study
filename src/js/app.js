@@ -22,7 +22,9 @@ function send(value) {
   };
 }
 
-// Reducer
+/* Reducers の実装 */
+
+// Reducer の実装
 function formReducer(state, action) {
   switch (action.type) {
     case SEND:
@@ -43,20 +45,22 @@ const initialState = {
 // createStore（）メソッドを使ってStoreの作成
 const store = createStore(formReducer, initialState);
 
-// ActionをReducerに伝播
-store.dispatch(actionCreators());
-
-// stateの状態を購読。状態に変化があったらリスナーを実行
-store.subscribe(() => {
-  /* リスナーの処理を書く */
-  // stateを取得
-  store.getState();
-});
+// // ActionをReducerに伝播
+// store.dispatch(actionCreators());
+//
+// // stateの状態を購読。状態に変化があったらリスナーを実行
+// store.subscribe(() => {
+//   /* リスナーの処理を書く */
+//   // stateを取得
+//   store.getState();
+// });
 
 
 /**
  *  Redux と React の連携
+ *  View の実装
  */
+
 // Container Components の実装
 class FormApp extends React.Component {
   render() {
@@ -68,7 +72,7 @@ class FormApp extends React.Component {
     );
   }
 }
-FormApp.prototype = {
+FormApp.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   value: React.propTypes.string,
 }
@@ -106,13 +110,6 @@ FormDisplay.propTypes = {
   data: React.PropTypes.string,
 }
 
-// Rendering
-ReactDOM.render(
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>,
-  document.querySelector('.content')
-);
 
 // Connect to redux
 function mapStateToProps(state){
@@ -131,3 +128,11 @@ const AppContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(FormApp);
+
+// Rendering
+ReactDOM.render(
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
+  document.querySelector('.content')
+);
