@@ -1,4 +1,7 @@
-import { createStore } from 'redux'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
 
 /* Actionの実装 */
 
@@ -44,3 +47,53 @@ store.subscribe(() => {
   // stateを取得
   store.getState();
 });
+
+
+// Container Components の実装
+class FormApp extends React.Component {
+  render() {
+    return (
+      <div>
+        <FormInput handleClick={this.props.onClick} />
+        <FormDisplay data-{this.props.value} />
+      </div>
+    );
+  }
+}
+FormApp.prototype = {
+  onClick: React.PropTypes.func.isRequired,
+  value: React.propTypes.string,
+}
+
+// Presentational Components の実装 (FormInput)
+class FormInput extends React.Component {
+  send(e) {
+    e.preventDefault();
+    this.props.handleClick(this.myInput.value.trim());
+    this.myInput.value = '';
+    return;
+  }
+  render() {
+    return (
+      <form>
+        <input type="text" ref={(ref) => (this.myInput = ref)} defaultValue="" />
+        <button onClick={(event) => this.send(event)}Send</button>
+      </form>
+    );
+  }
+}
+FormInput.propTypes = {
+  handleClick: React.PropTypes.func.isRequired,
+};
+
+// Presentational Components の実装 (FormDisplay)
+class FormDisplay extends React.component {
+  render() {
+    return (
+      <div>{this.props.data}</div>
+    );
+  }
+}
+FormDisplay.propTypes = {
+  data: React.PropTypes.string,
+}
