@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 /**
@@ -67,14 +68,14 @@ class FormApp extends React.Component {
     return (
       <div>
         <FormInput handleClick={this.props.onClick} />
-        <FormDisplay data-{this.props.value} />
+        <FormDisplay data={this.props.value} />
       </div>
     );
   }
 }
 FormApp.propTypes = {
-  onClick: React.PropTypes.func.isRequired,
-  value: React.propTypes.string,
+  onClick: PropTypes.func.isRequired,
+  value: PropTypes.string,
 }
 
 // Presentational Components の実装 (FormInput)
@@ -89,17 +90,17 @@ class FormInput extends React.Component {
     return (
       <form>
         <input type="text" ref={(ref) => (this.myInput = ref)} defaultValue="" />
-        <button onClick={(event) => this.send(event)}Send</button>
+        <button onClick={(event) => this.send(event)}>Send</button>
       </form>
     );
   }
 }
 FormInput.propTypes = {
-  handleClick: React.PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 // Presentational Components の実装 (FormDisplay)
-class FormDisplay extends React.component {
+class FormDisplay extends React.Component {
   render() {
     return (
       <div>{this.props.data}</div>
@@ -107,7 +108,7 @@ class FormDisplay extends React.component {
   }
 }
 FormDisplay.propTypes = {
-  data: React.PropTypes.string,
+  data: PropTypes.string,
 }
 
 
