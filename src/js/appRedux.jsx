@@ -15,6 +15,20 @@ const counter = (state = 0, action) => {
 // Store
 const store = createStore(counter)
 
-console.log(store.getState())
-store.dispatch({type: 'INCREMENT'})
-console.log(store.getState())
+// Render
+const render = () => {
+  document.body.innerText = store.getState()
+}
+store.subscribe(render)
+
+render()
+
+
+// // Subscribe
+// store.subscribe(() => {
+//   document.body.innerText = store.getState()
+// })
+
+document.addEventListener('click', () => {
+  store.dispatch({type: 'INCREMENT'})
+})
