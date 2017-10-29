@@ -20,8 +20,15 @@ const counter = (state = 0, action) => {
 }
 
 // React : Counter コンポーネントを作成
-const Counter = ({value}) => (
-  <div>{value}</div>
+const Counter = ({value,
+  onIncrement,
+  onDecrement,
+}) => (
+  <div>
+    <div>{value}</div>
+    <button onClick={onIncrement}>+</button>
+    <button onClick={onDecrement}>-</button>
+  </div>
 )
 
 // Store
@@ -30,20 +37,21 @@ const store = createStore(counter)
 // React : ReactDOM でレンダリング
 const render = () => {
   ReactDOM.render(
-    <Counter value={store.getState()} />,
+    <Counter value={store.getState()}
+      onIncrement={() =>
+        store.dispatch({
+          type: 'INCREMENT'
+        })}
+      onDecrement={() =>
+        store.dispatch({
+          type: 'DECREMENT'
+        })}
+    />,
     document.getElementById('root')
   )
 }
 
-// Redux : Render
-// const render = () => {
-//   document.body.innerText = store.getState()
-// }
 store.subscribe(render)
 
 // 初期表示用
 render()
-
-document.addEventListener('click', () => {
-  store.dispatch({type: 'INCREMENT'})
-})
