@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 
 
 /**
- *  Redux チュートリアルサンプル
+ * Redux チュートリアルサンプル
+ * Reduxの実装とReactとの連携を超シンプルなサンプルを使って解説
  */
 
 /* Actionの実装 */

@@ -1,5 +1,10 @@
 import { createStore } from 'redux'
 
+/**
+ * Redux チュートリアルサンプル
+ * Reduxチュートリアル動画を見ながらReduxを基礎の基礎から
+ */
+
 // Reducer
 const counter = (state = 0, action) => {
   switch(action.type) {
@@ -21,13 +26,8 @@ const render = () => {
 }
 store.subscribe(render)
 
+// 初期表示用
 render()
-
-
-// // Subscribe
-// store.subscribe(() => {
-//   document.body.innerText = store.getState()
-// })
 
 document.addEventListener('click', () => {
   store.dispatch({type: 'INCREMENT'})
