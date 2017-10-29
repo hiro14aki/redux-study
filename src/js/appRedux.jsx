@@ -1,3 +1,5 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 
 /**
@@ -17,13 +19,26 @@ const counter = (state = 0, action) => {
   }
 }
 
+// React : Counter コンポーネントを作成
+const Counter = ({value}) => (
+  <div>{value}</div>
+)
+
 // Store
 const store = createStore(counter)
 
-// Render
+// React : ReactDOM でレンダリング
 const render = () => {
-  document.body.innerText = store.getState()
+  ReactDOM.render(
+    <Counter value={store.getState()} />,
+    document.getElementById('root')
+  )
 }
+
+// Redux : Render
+// const render = () => {
+//   document.body.innerText = store.getState()
+// }
 store.subscribe(render)
 
 // 初期表示用
