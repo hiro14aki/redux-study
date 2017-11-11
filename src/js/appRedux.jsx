@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 /**
  * Redux チュートリアルサンプル
  * Reduxチュートリアル動画を見ながらReduxを基礎の基礎から
+ * https://qiita.com/insight3110/items/4d212ecef6992e8eaee5
  */
 
 // Reducer

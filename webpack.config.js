@@ -9,7 +9,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = {
   entry: {
     app: "./src/js/app.jsx",
-    appRedux: "./src/js/appRedux.jsx"
+    appRedux: "./src/js/appRedux.jsx",
+    appRedux2: "./src/js/appRedux2.jsx"
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

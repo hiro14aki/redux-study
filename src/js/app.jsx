@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 /**
  * Redux チュートリアルサンプル
  * Reduxの実装とReactとの連携を超シンプルなサンプルを使って解説
+ * https://mae.chab.in/archives/2885
  */
 
 /* Actionの実装 */
