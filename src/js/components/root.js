@@ -29,10 +29,12 @@ export default class Root extends Component {
         boxTitle: <input type="text" onChange={elm => this.setState({boxTitle: elm.target.value})} />
         {boxComponent}
         <button className="btn btn-primary" onClick={() => this.handleClick()}>{btnName}</button>
+        <hr></hr>
         <div>
           {this.props.children}
         </div>
-        <PostalCodeAjax></PostalCodeAjax>
+        <hr></hr>
+        <PostalCodeAjax boxTitle={boxTitle}></PostalCodeAjax>
       </div>
     );
   }

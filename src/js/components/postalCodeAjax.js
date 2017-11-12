@@ -8,8 +8,19 @@ export default class PostalCodeAjax extends Component {
     super(props);
     this.state = {
       postalCode: '106-6113',
-      data: {},
+      data: {}
     };
+  }
+
+  // props を受け取って state にセットする必要あり
+  componentWillReceiveProps(nextProps) {
+    if (this.props.boxTitle != nextProps.boxTitle) {
+      if (nextProps.boxTitle == '') {
+        this.setState({boxTitle: Number.parseInt(Date.now(), 10)});
+      } else if (nextProps.boxTitle != this.state.boxTitle) {
+        this.setState({boxTitle: nextProps.boxTitle});
+      }
+    }
   }
 
   componentDidMount() {
@@ -24,9 +35,10 @@ export default class PostalCodeAjax extends Component {
 
   render() {
     const data = this.state.data;
+    const boxTitle = this.state.boxTitle;
     const addressData = data.data != undefined ? data.data : {};
     return (
-      <Box>
+      <Box boxTitleP={boxTitle}>
         <input
           type="text"
           value={this.state.postalCode}
